@@ -31,21 +31,21 @@ export default function ServicesSection({ onSelectServiceForBooking }) {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy-100 border border-navy-200 text-navy-800 text-xs font-bold uppercase tracking-wider">
-            <Stethoscope className="w-3.5 h-3.5 text-navy-600" />
-            <span>Comprehensive Medical & Dental Care</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-100 border border-sky-200 text-sky-800 text-xs font-bold uppercase tracking-wider">
+            <Stethoscope className="w-3.5 h-3.5 text-sky-600" />
+            <span>24/7 Surgical & Hospital Healthcare</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Our Specialized <span className="text-gradient">Treatment & Services</span>
+            Hospital Departments & <span className="text-gradient">Medical Services</span>
           </h2>
 
           <p className="text-slate-600 text-base">
-            Equipped with 100% digital instruments, we protect your teeth for good food chewing & digestion, and provide expert health consultation in Chichawatni.
+            Fatima Surgical Hospital provides general & laparoscopic surgical procedures, round-the-clock emergency trauma response, general medicine, and diagnostics in Shalimar town, Harappa.
           </p>
 
           {/* Filter Tabs */}
-          <div className="flex items-center justify-center gap-2 pt-4">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
             <button
               onClick={() => setActiveTab('all')}
               className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
@@ -54,29 +54,37 @@ export default function ServicesSection({ onSelectServiceForBooking }) {
                   : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
               }`}
             >
-              All Treatments ({SERVICES.length})
+              All Services ({SERVICES.length})
             </button>
             <button
-              onClick={() => setActiveTab('dental')}
+              onClick={() => setActiveTab('surgical')}
               className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
-                activeTab === 'dental' 
-                  ? 'bg-medical-600 text-white shadow-glow' 
+                activeTab === 'surgical' 
+                  ? 'bg-sky-600 text-white shadow-glow' 
                   : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
               }`}
             >
-              <span>🦷 Dental Care</span>
-              <span className="text-xs px-2 py-0.5 rounded-md bg-white/20">7</span>
+              <span>✂️ Surgical Unit</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('emergency')}
+              className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
+                activeTab === 'emergency' 
+                  ? 'bg-rose-600 text-white shadow-md' 
+                  : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
+              }`}
+            >
+              <span>🚑 24/7 Emergency</span>
             </button>
             <button
               onClick={() => setActiveTab('medical')}
               className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
                 activeTab === 'medical' 
-                  ? 'bg-navy-600 text-white shadow-md' 
+                  ? 'bg-emerald-600 text-white shadow-md' 
                   : 'bg-white text-slate-700 hover:bg-slate-200 border border-slate-200'
               }`}
             >
-              <span>🩺 Health Consultant</span>
-              <span className="text-xs px-2 py-0.5 rounded-md bg-white/20">2</span>
+              <span>🩺 General Medicine</span>
             </button>
           </div>
         </div>
@@ -108,8 +116,8 @@ export default function ServicesSection({ onSelectServiceForBooking }) {
                   </div>
 
                   {/* Category Badge */}
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-medical-600 mb-1">
-                    {service.category === 'dental' ? 'Dental Specialty' : 'Health Consultant'}
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-sky-600 mb-1">
+                    {service.category === 'surgical' ? 'Surgical Department' : service.category === 'emergency' ? '24/7 Emergency Unit' : 'General Healthcare'}
                   </div>
 
                   {/* Title & Short Description */}

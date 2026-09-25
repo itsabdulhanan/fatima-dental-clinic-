@@ -20,17 +20,17 @@ export default function TimingsSection({ onSelectDayForBooking }) {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-800 text-xs font-extrabold uppercase tracking-wide">
-            <Clock className="w-3.5 h-3.5 text-sky-600" />
-            <span>Clinic Operational Hours</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-extrabold uppercase tracking-wide">
+            <Clock className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Hospital Operational Hours</span>
           </div>
 
           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            Day-Wise Clinic Timings & Consultation Shifts
+            24/7 Round-the-Clock Emergency & Surgical Duty
           </h2>
 
           <p className="text-slate-600 text-base">
-            We operate in two convenient daily shifts (Morning & Evening) Monday through Saturday. Sunday is reserved for emergency appointments.
+            Fatima Surgical Hospital is open 24 hours a day, 7 days a week. Our medical, surgical, and emergency triage team is continuously active for patient care.
           </p>
         </div>
 
@@ -71,10 +71,10 @@ export default function TimingsSection({ onSelectDayForBooking }) {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
                 <div>
                   <div className="flex items-center gap-3">
-                    <h3 className="text-2xl font-black text-white">{dayData.day} Timings</h3>
+                    <h3 className="text-2xl font-black text-white">{dayData.day} - Open 24 Hours</h3>
                     {isToday && (
                       <span className="bg-emerald-500 text-slate-950 font-extrabold text-xs px-2.5 py-0.5 rounded-full">
-                        Today
+                        Active Today
                       </span>
                     )}
                   </div>
@@ -91,16 +91,16 @@ export default function TimingsSection({ onSelectDayForBooking }) {
               </div>
 
               {/* Sessions */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
                 
                 <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 flex items-start gap-3">
                   <div className="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl">
                     <Sun className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-400 uppercase">Morning Shift</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">10:00 AM – 02:00 PM</div>
-                    <div className="text-xs text-slate-300 mt-0.5">Dental Surgery & Physician Consultation</div>
+                    <div className="text-xs font-bold text-slate-400 uppercase">Day Shift</div>
+                    <div className="text-base font-extrabold text-white mt-0.5">08:00 AM – 08:00 PM</div>
+                    <div className="text-xs text-slate-300 mt-0.5">Opd Consultation & Scheduled Surgeries</div>
                   </div>
                 </div>
 
@@ -109,19 +109,19 @@ export default function TimingsSection({ onSelectDayForBooking }) {
                     <Moon className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-400 uppercase">Evening Shift</div>
-                    <div className="text-base font-extrabold text-white mt-0.5">05:00 PM – 09:00 PM</div>
-                    <div className="text-xs text-slate-300 mt-0.5">Root Canal, Braces & Whitening</div>
+                    <div className="text-xs font-bold text-slate-400 uppercase">Night Shift</div>
+                    <div className="text-base font-extrabold text-white mt-0.5">08:00 PM – 08:00 AM</div>
+                    <div className="text-xs text-slate-300 mt-0.5">Emergency Triage & Operative Support</div>
                   </div>
                 </div>
 
-                <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700 md:col-span-2 lg:col-span-1">
-                  <div className="text-xs font-bold text-slate-400 uppercase">Consultant Schedule</div>
+                <div className="bg-slate-800 p-4 rounded-2xl border border-slate-700">
+                  <div className="text-xs font-bold text-emerald-400 uppercase">Hospital Status</div>
                   <div className="text-xs text-slate-200 mt-1">
-                    🦷 Dental Surgeon: <strong className="text-white">{dayData.dentalConsultant}</strong>
+                    🏥 Department: <strong className="text-white">Hospital Department</strong>
                   </div>
                   <div className="text-xs text-slate-200 mt-1">
-                    🩺 Health Physician: <strong className="text-white">{dayData.healthConsultant}</strong>
+                    📞 Emergency Contact: <strong className="text-white">0302 6933917</strong>
                   </div>
                 </div>
 
@@ -135,7 +135,7 @@ export default function TimingsSection({ onSelectDayForBooking }) {
         <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 sm:p-6">
           <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
             <Calendar className="w-5 h-5 text-sky-600" />
-            Complete Day-by-Day Schedule Overview
+            24-Hour Duty & Availability Overview
           </h3>
 
           <div className="overflow-x-auto">
@@ -143,8 +143,8 @@ export default function TimingsSection({ onSelectDayForBooking }) {
               <thead>
                 <tr className="border-b border-slate-200 text-xs font-extrabold text-slate-500 uppercase">
                   <th className="py-3 px-3">Day</th>
-                  <th className="py-3 px-3">Morning Shift</th>
-                  <th className="py-3 px-3">Evening Shift</th>
+                  <th className="py-3 px-3">Hospital Hours</th>
+                  <th className="py-3 px-3">Emergency Unit</th>
                   <th className="py-3 px-3">Status</th>
                   <th className="py-3 px-3 text-right">Action</th>
                 </tr>
@@ -167,21 +167,15 @@ export default function TimingsSection({ onSelectDayForBooking }) {
                         )}
                       </td>
                       <td className="py-3 px-3 text-slate-700">
-                        {s.isOpen ? '10:00 AM – 02:00 PM' : 'Closed'}
+                        Open 24 Hours
                       </td>
                       <td className="py-3 px-3 text-slate-700">
-                        {s.isOpen ? '05:00 PM – 09:00 PM' : 'Emergency On-Call'}
+                        24/7 Active Duty
                       </td>
                       <td className="py-3 px-3">
-                        {s.isOpen ? (
-                          <span className="inline-flex items-center gap-1 text-xs text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">
-                            <CheckCircle2 className="w-3.5 h-3.5" /> Open
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 text-xs text-amber-700 font-bold bg-amber-100 px-2 py-0.5 rounded-full">
-                            <AlertCircle className="w-3.5 h-3.5" /> Emergency
-                          </span>
-                        )}
+                        <span className="inline-flex items-center gap-1 text-xs text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">
+                          <CheckCircle2 className="w-3.5 h-3.5" /> Open 24/7
+                        </span>
                       </td>
                       <td className="py-3 px-3 text-right">
                         <button

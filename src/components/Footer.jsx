@@ -9,39 +9,39 @@ export default function Footer({ onOpenBooking }) {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-900">
           
-          {/* Col 1 & 2: Clinic Brand */}
+          {/* Col 1 & 2: Hospital Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-medical p-0.5 shadow-glow">
+              <div className="w-10 h-10 rounded-2xl bg-sky-600 p-0.5 shadow-glow">
                 <div className="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-white">
-                  <span className="text-lg">🦷</span>
+                  <span className="text-lg">🏥</span>
                 </div>
               </div>
               <div>
                 <h3 className="text-lg font-black text-white">{CLINIC_INFO.name}</h3>
-                <p className="text-xs text-medical-400 font-bold uppercase tracking-wider">Chichawatni, Punjab</p>
+                <p className="text-xs text-sky-400 font-bold uppercase tracking-wider">Harappa, Punjab</p>
               </div>
             </div>
 
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Providing digital dental care, painless root canals, braces, teeth whitening, and complete general health consulting with 100% sterile digital instruments.
+              Providing 24/7 round-the-clock emergency medical services, laparoscopic and general surgery, outpatient consultation, and specialized hospital healthcare in Shalimar town, Harappa.
             </p>
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-semibold">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Autoclave Sterile • Digital Equipment</span>
+              <span>Sterile Operation Theater • Open 24 Hours</span>
             </div>
           </div>
 
           {/* Col 3: Quick Navigation */}
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-medical-400">Quick Links</h4>
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-sky-400">Quick Links</h4>
             <ul className="space-y-2 text-xs font-semibold text-slate-400">
               <li><a href="#hero" className="hover:text-white transition">Home</a></li>
-              <li><a href="#timings" className="hover:text-white transition">Day-wise Timings</a></li>
-              <li><a href="#services" className="hover:text-white transition">Dental Treatments</a></li>
-              <li><a href="#services" className="hover:text-white transition">Health Consultant</a></li>
-              <li><a href="#digital-tech" className="hover:text-white transition">Digital Instruments</a></li>
+              <li><a href="#timings" className="hover:text-white transition">24/7 Schedule</a></li>
+              <li><a href="#services" className="hover:text-white transition">Surgical Unit</a></li>
+              <li><a href="#services" className="hover:text-white transition">Emergency Care</a></li>
+              <li><a href="#digital-tech" className="hover:text-white transition">Hospital Infrastructure</a></li>
               <li><a href="#doctors" className="hover:text-white transition">Our Doctors</a></li>
               <li><a href="#contact" className="hover:text-white transition">Location & Directions</a></li>
             </ul>
@@ -49,29 +49,29 @@ export default function Footer({ onOpenBooking }) {
 
           {/* Col 4: Operational Hours */}
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-medical-400">Clinic Shift Hours</h4>
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-sky-400">Hospital Operational Hours</h4>
             <div className="space-y-2 text-xs text-slate-300 font-medium">
               <div>
-                <strong className="text-white block font-bold">Mon – Sat Morning:</strong>
-                <span className="text-slate-400">10:00 AM – 02:00 PM</span>
+                <strong className="text-white block font-bold">Emergency & Surgical Unit:</strong>
+                <span className="text-emerald-400 font-bold">Open 24 Hours / 7 Days</span>
               </div>
               <div>
-                <strong className="text-white block font-bold">Mon – Sat Evening:</strong>
-                <span className="text-slate-400">05:00 PM – 09:00 PM</span>
+                <strong className="text-white block font-bold">Opd Consultation:</strong>
+                <span className="text-slate-400">Continuous Duty Shift</span>
               </div>
               <div>
-                <strong className="text-amber-400 block font-bold">Sunday:</strong>
-                <span className="text-slate-400">Emergency & On-Call</span>
+                <strong className="text-amber-400 block font-bold">Sunday Duty:</strong>
+                <span className="text-slate-400">Fully Functional 24/7</span>
               </div>
             </div>
           </div>
 
           {/* Col 5: Contact Info */}
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-medical-400">Contact Clinic</h4>
+            <h4 className="text-xs font-extrabold uppercase tracking-wider text-sky-400">Contact Hospital</h4>
             <div className="space-y-2 text-xs text-slate-300">
               <p className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-medical-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
                 <span>{CLINIC_INFO.address}</span>
               </p>
               <p className="flex items-center gap-2">
@@ -84,9 +84,9 @@ export default function Footer({ onOpenBooking }) {
 
             <button
               onClick={onOpenBooking}
-              className="w-full py-2.5 bg-gradient-medical text-white font-bold text-xs rounded-xl shadow-glow transition mt-2"
+              className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow transition mt-2"
             >
-              Book Online Appointment
+              Book Online Consultation
             </button>
           </div>
 
@@ -94,9 +94,9 @@ export default function Footer({ onOpenBooking }) {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Sardar Medical & Dental Clinic. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Fatima Surgical Hospital. All Rights Reserved.</p>
           <p className="flex items-center gap-1">
-            Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Chichawatni Community
+            Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Harappa Community
           </p>
         </div>
 

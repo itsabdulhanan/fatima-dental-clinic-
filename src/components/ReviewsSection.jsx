@@ -18,11 +18,11 @@ export default function ReviewsSection() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Trusted by Hundreds of <span className="text-gradient">Chichawatni Families</span>
+              Rated 5.0 ★ <span className="text-gradient">(2 Reviews)</span>
             </h2>
 
             <p className="text-slate-600 text-base">
-              Here is what our patients say about their experience at Sardar Medical & Dental Clinic.
+              Here is what patients say about their surgical and emergency care experience at Fatima Surgical Hospital.
             </p>
           </div>
 

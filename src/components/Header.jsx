@@ -7,70 +7,23 @@ export default function Header({ onOpenBooking, onOpenMyBookings, bookedCount = 
   const [isOpenNow, setIsOpenNow] = useState(false);
   const [statusText, setStatusText] = useState('Checking Status...');
 
-  // Live Open/Closed Calculation
+  // Live Open/Closed Calculation (Hospital is Open 24/7)
   useEffect(() => {
-    const updateStatus = () => {
-      const now = new Date();
-      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      const currentDay = dayNames[now.getDay()];
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
-      const totalMinutes = currentHour * 60 + currentMinute;
-
-      const daySchedule = WEEKLY_SCHEDULE.find(s => s.day === currentDay);
-
-      if (!daySchedule || !daySchedule.isOpen) {
-        setIsOpenNow(false);
-        setStatusText("Closed Today • Sunday Emergency On-Call");
-        return;
-      }
-
-      const morningStart = 10 * 60; // 10:00 AM
-      const morningEnd = 14 * 60; // 2:00 PM
-      const eveningStart = 17 * 60; // 5:00 PM
-      const eveningEnd = 21 * 60; // 9:00 PM
-
-      const isFriday = currentDay === "Friday";
-      const friMorningEnd = isFriday ? 13 * 60 : morningEnd;
-
-      if (totalMinutes >= morningStart && totalMinutes < friMorningEnd) {
-        setIsOpenNow(true);
-        setStatusText("Open Now • Morning Shift (10am – 2pm)");
-      } else if (totalMinutes >= eveningStart && totalMinutes < eveningEnd) {
-        setIsOpenNow(true);
-        setStatusText("Open Now • Evening Shift (5pm – 9pm)");
-      } else if (totalMinutes < morningStart) {
-        setIsOpenNow(false);
-        setStatusText("Closed Now • Opens at 10:00 AM Today");
-      } else if (totalMinutes >= friMorningEnd && totalMinutes < eveningStart) {
-        setIsOpenNow(false);
-        setStatusText(isFriday ? "Closed for Jumma Break • Reopens 5:00 PM" : "Afternoon Break • Reopens 5:00 PM");
-      } else {
-        setIsOpenNow(false);
-        setStatusText("Closed Now • Opens 10:00 AM Tomorrow");
-      }
-    };
-
-    updateStatus();
-    const interval = setInterval(updateStatus, 60000);
-    return () => clearInterval(interval);
+    setIsOpenNow(true);
+    setStatusText("Open 24 Hours • 24/7 Surgical & Emergency Care");
   }, []);
 
   return (
     <header className="w-full font-sans">
       
-      {/* Top Utility Bar (Human & Clear) */}
+      {/* Top Utility Bar */}
       <div className="bg-slate-900 text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           
           <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
             {/* Live Status Badge */}
-            <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold text-[11px] ${
-              isOpenNow 
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' 
-                : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-            }`}>
-              <span className={`w-2 h-2 rounded-full ${isOpenNow ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               {statusText}
             </span>
 
@@ -78,7 +31,7 @@ export default function Header({ onOpenBooking, onOpenMyBookings, bookedCount = 
 
             <span className="hidden md:inline-flex items-center gap-1 text-slate-300">
               <MapPin className="w-3.5 h-3.5 text-sky-400" />
-              Block 14, Gujjar Chowk, Chichawatni
+              {CLINIC_INFO.address}
             </span>
           </div>
 
@@ -88,11 +41,11 @@ export default function Header({ onOpenBooking, onOpenMyBookings, bookedCount = 
               className="inline-flex items-center gap-1.5 text-white hover:text-sky-300 transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-emerald-400" />
-              Phone: <span className="font-extrabold text-white">{CLINIC_INFO.phone}</span>
+              Call: <span className="font-extrabold text-white">{CLINIC_INFO.phone}</span>
             </a>
 
             <a 
-              href={`https://wa.me/${CLINIC_INFO.whatsapp}?text=Hello%20Sardar%20Clinic,%20I%20want%20to%20inquire%20about%20treatment.`}
+              href={`https://wa.me/${CLINIC_INFO.whatsapp}?text=Hello%20Fatima%20Surgical%20Hospital,%20I%20want%20to%20inquire%20about%20treatment.`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition"
@@ -119,17 +72,17 @@ export default function Header({ onOpenBooking, onOpenMyBookings, bookedCount = 
       <nav className="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           
-          {/* Clinic Brand */}
+          {/* Hospital Brand */}
           <a href="#" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:bg-sky-700 transition">
-              🦷
+              🏥
             </div>
             <div>
               <span className="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight block leading-none">
-                Sardar Medical & Dental Clinic
+                {CLINIC_INFO.name}
               </span>
               <span className="text-xs font-semibold text-sky-700 mt-0.5 block">
-                Health Consultant & Digital Dental Care • Chichawatni
+                Hospital Department • Open 24 Hours • Harappa
               </span>
             </div>
           </a>
@@ -139,7 +92,7 @@ export default function Header({ onOpenBooking, onOpenMyBookings, bookedCount = 
             <a href="#hero" className="hover:text-sky-600 transition">Home</a>
             <a href="#timings" className="hover:text-sky-600 transition flex items-center gap-1">
               <Clock className="w-4 h-4 text-sky-600" />
-              Day-Wise Timings
+              24/7 Schedule
             </a>
             <a href="#services" className="hover:text-sky-600 transition">Services</a>
             <a href="#digital-tech" className="hover:text-sky-600 transition">Sterile Tech</a>

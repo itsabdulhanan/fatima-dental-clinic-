@@ -66,11 +66,11 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
     e.preventDefault();
     if (!patientInfo.name || !patientInfo.phone) return;
 
-    const bookingRef = 'SMDC-' + Math.floor(100000 + Math.random() * 900000);
+    const bookingRef = 'FSH-' + Math.floor(100000 + Math.random() * 900000);
     const newBooking = {
       id: bookingRef,
-      service: selectedService ? selectedService.title : 'General Consultation',
-      category: selectedService ? selectedService.category : 'dental',
+      service: selectedService ? selectedService.title : 'General Surgery / Consultation',
+      category: selectedService ? selectedService.category : 'surgical',
       doctor: selectedDoctor,
       date: selectedDate,
       timeSlot: selectedSlot,
@@ -84,9 +84,9 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
     };
 
     // Save to LocalStorage
-    const existing = JSON.parse(localStorage.getItem('sardar_clinic_bookings') || '[]');
+    const existing = JSON.parse(localStorage.getItem('fatima_hospital_bookings') || localStorage.getItem('sardar_clinic_bookings') || '[]');
     const updated = [newBooking, ...existing];
-    localStorage.setItem('sardar_clinic_bookings', JSON.stringify(updated));
+    localStorage.setItem('fatima_hospital_bookings', JSON.stringify(updated));
 
     setConfirmedBooking(newBooking);
     setStep(4); // Confirmation step
@@ -104,7 +104,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
   };
 
   const generateWhatsAppMessage = (b) => {
-    const text = `*APPOINTMENT BOOKING - SARDAR CLINIC*\n` +
+    const text = `*APPOINTMENT BOOKING - FATIMA SURGICAL HOSPITAL*\n` +
       `-----------------------------------\n` +
       `*Pass ID*: ${b.id}\n` +
       `*Patient Name*: ${b.patientName}\n` +
@@ -137,11 +137,11 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
             <Calendar className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-medical-600">
-              Online Appointment System
+            <span className="text-xs font-bold uppercase tracking-wider text-sky-600">
+              Online Appointment & Consultation
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-slate-900">
-              Sardar Medical & Dental Clinic
+              {CLINIC_INFO.name}
             </h2>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
             <div className={`flex-1 text-center py-1.5 rounded-xl text-xs font-extrabold transition ${
               step === 1 ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600'
             }`}>
-              1. Select Treatment
+              1. Select Service
             </div>
             <div className={`flex-1 text-center py-1.5 rounded-xl text-xs font-extrabold transition ${
               step === 2 ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600'
@@ -172,7 +172,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
           <div className="space-y-6">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
-                Choose Medical or Dental Service:
+                Choose Surgical or Medical Service:
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-64 overflow-y-auto pr-1">
                 {SERVICES.map((srv) => {
@@ -183,20 +183,22 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
                       onClick={() => setSelectedService(srv)}
                       className={`p-3.5 rounded-2xl border cursor-pointer transition flex items-center justify-between ${
                         isSelected 
-                          ? 'border-medical-500 bg-medical-50/80 shadow-sm font-semibold' 
+                          ? 'border-sky-500 bg-sky-50/80 shadow-sm font-semibold' 
                           : 'border-slate-200 hover:bg-slate-50'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-xl">
-                          {srv.category === 'dental' ? '🦷' : '🩺'}
+                          {srv.category === 'surgical' ? '✂️' : srv.category === 'emergency' ? '🚑' : '🩺'}
                         </span>
                         <div>
                           <div className="text-xs font-bold text-slate-900">{srv.title}</div>
-                          <div className="text-[10px] text-slate-500">{srv.category === 'dental' ? 'Digital Dental Care' : 'Health Consultant'}</div>
+                          <div className="text-[10px] text-slate-500">
+                            {srv.category === 'surgical' ? 'Surgical Unit' : srv.category === 'emergency' ? '24/7 Emergency' : 'General Medicine'}
+                          </div>
                         </div>
                       </div>
-                      {isSelected && <CheckCircle2 className="w-5 h-5 text-medical-600 shrink-0" />}
+                      {isSelected && <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0" />}
                     </div>
                   );
                 })}
@@ -246,7 +248,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-medical-500"
               />
               <p className="text-[11px] text-slate-500 mt-1">
-                Clinic is open Mon-Sat (10am-2pm & 5pm-9pm). Sunday for Emergency on-call.
+                Fatima Surgical Hospital is open 24 Hours a day, 7 days a week.
               </p>
             </div>
 
@@ -470,7 +472,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
               </div>
 
               <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                <span>📍 Block 14, Gujjar Chowk, Chichawatni</span>
+                <span>📍 {CLINIC_INFO.address}</span>
                 <span>📞 {CLINIC_INFO.phone}</span>
               </div>
             </div>
@@ -484,7 +486,7 @@ export default function AppointmentModal({ isOpen, onClose, initialService = nul
                 className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-xl shadow transition flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-5 h-5" />
-                Send Confirmation Pass to WhatsApp (0321 5770440)
+                Send Confirmation Pass to WhatsApp ({CLINIC_INFO.phone})
               </a>
 
               <div className="flex gap-3">

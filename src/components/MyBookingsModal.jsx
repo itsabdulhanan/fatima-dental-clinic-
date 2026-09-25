@@ -7,7 +7,7 @@ export default function MyBookingsModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      const saved = JSON.parse(localStorage.getItem('sardar_clinic_bookings') || '[]');
+      const saved = JSON.parse(localStorage.getItem('fatima_hospital_bookings') || localStorage.getItem('sardar_clinic_bookings') || '[]');
       setBookings(saved);
     }
   }, [isOpen]);
@@ -18,12 +18,12 @@ export default function MyBookingsModal({ isOpen, onClose }) {
     if (window.confirm("Are you sure you want to cancel this appointment pass?")) {
       const updated = bookings.filter(b => b.id !== id);
       setBookings(updated);
-      localStorage.setItem('sardar_clinic_bookings', JSON.stringify(updated));
+      localStorage.setItem('fatima_hospital_bookings', JSON.stringify(updated));
     }
   };
 
   const generateWhatsAppMessage = (b) => {
-    const text = `*APPOINTMENT INQUIRY - SARDAR CLINIC*\n` +
+    const text = `*APPOINTMENT INQUIRY - FATIMA SURGICAL HOSPITAL*\n` +
       `*Pass ID*: ${b.id}\n` +
       `*Patient Name*: ${b.patientName}\n` +
       `*Service*: ${b.service}\n` +

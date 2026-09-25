@@ -19,7 +19,7 @@ export default function DoctorsSection({ onOpenBooking }) {
           </h2>
 
           <p className="text-slate-600 text-base">
-            Our experienced dental surgeons and senior health consultants are dedicated to providing compassionate, precise medical and dental care.
+            Our experienced surgical consultants, general physicians, and 24/7 duty medical officers are dedicated to providing compassionate, precise healthcare at Fatima Surgical Hospital.
           </p>
         </div>
 

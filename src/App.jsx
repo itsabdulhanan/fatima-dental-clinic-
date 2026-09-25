@@ -19,7 +19,7 @@ export default function App() {
   const [bookedCount, setBookedCount] = useState(0);
 
   const updateBookedCount = () => {
-    const saved = JSON.parse(localStorage.getItem('sardar_clinic_bookings') || '[]');
+    const saved = JSON.parse(localStorage.getItem('fatima_hospital_bookings') || localStorage.getItem('sardar_clinic_bookings') || '[]');
     setBookedCount(saved.length);
   };
 
